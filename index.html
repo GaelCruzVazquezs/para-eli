@@ -2,28 +2,131 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para mi niña preciosa</title>
+  <title>Para ti, Eli</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #ffe6f0;
+      background: linear-gradient(to right, #ffe6e6, #fff0f5);
       font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      height: 100vh;
+      position: relative;
+    }
+
+    .saludo {
+      position: fixed;
+      top: 40%;
+      width: 100%;
       text-align: center;
-      color: #d63384;
-      padding: 50px;
+      font-size: 2.5rem;
+      color: #e91e63;
+      animation: fadeIn 2s ease-in-out forwards;
     }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .contenedor {
+      max-width: 700px;
+      margin: auto;
+      padding: 40px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 192, 203, 0.6);
+      margin-top: 100px;
+      text-align: center;
+      display: none;
+      animation: aparecer 2s ease forwards;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
     h1 {
-      font-size: 2.5em;
+      color: #e91e63;
+      font-size: 2rem;
     }
+
     p {
-      font-size: 1.3em;
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .firma {
+      margin-top: 30px;
+      font-style: italic;
+      color: #777;
+    }
+
+    .corazon {
+      position: absolute;
+      color: #ff69b4;
+      font-size: 20px;
+      animation: flotar 6s infinite ease-in;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Hola mi amor 💗</h1>
-  <p>Te hice esta página porque me encantas.</p>
-  <p>Eres lo mejor que me ha pasado. Gracias por estar en mi vida 💫</p>
+
+  <!-- Corazones flotando -->
+  <script>
+    const total = 40;
+    for (let i = 0; i < total; i++) {
+      const corazon = document.createElement("div");
+      corazon.className = "corazon";
+      corazon.innerText = "❤";
+      corazon.style.left = Math.random() * 100 + "vw";
+      corazon.style.fontSize = (Math.random() * 20 + 10) + "px";
+      corazon.style.animationDuration = (Math.random() * 3 + 4) + "s";
+      document.body.appendChild(corazon);
+    }
+  </script>
+
+  <!-- Saludo inicial -->
+  <div class="saludo" id="saludo">
+    Hola, Eli 💕
+  </div>
+
+  <!-- Mensaje principal -->
+  <div class="contenedor" id="contenido">
+    <h1>Gracias por llegar a mi vida</h1>
+    <p>
+      Eli, no tengo palabras para decirte lo mucho que valoro el haberte conocido.<br>
+      No sé si fue casualidad o destino, pero desde que llegaste, todo se siente más bonito.<br><br>
+      Tu forma de ser, tu sonrisa, tu apoyo... todo eso ha significado mucho para mí.<br>
+      Puede que no siempre sepa cómo demostrarlo, pero quiero que sepas que aquí tienes a alguien que te aprecia muchísimo.<br><br>
+      Gracias por existir. Gracias por ser tú. 💖
+    </p>
+    <p class="firma">— Gael</p>
+  </div>
+
+  <!-- Mostrar mensaje después de unos segundos -->
+  <script>
+    setTimeout(() => {
+      document.getElementById("saludo").style.display = "none";
+      document.getElementById("contenido").style.display = "block";
+    }, 4000); // 4 segundos
+  </script>
 </body>
 </html>
-    
