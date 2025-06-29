@@ -35,20 +35,13 @@
 
     .contenedor {
       max-width: 800px;
-      margin: auto;
+      margin: 100px auto;
       padding: 40px;
       background-color: white;
       border-radius: 20px;
       box-shadow: 0 0 20px rgba(255, 192, 203, 0.6);
-      margin-top: 100px;
-      text-align: center;
       display: none;
-      animation: aparecer 2s ease forwards;
-    }
-
-    @keyframes aparecer {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
+      text-align: center;
     }
 
     h1 {
@@ -57,17 +50,21 @@
       margin-bottom: 20px;
     }
 
-    p {
+    .mensaje {
       font-size: 1.1rem;
       color: #333;
       line-height: 1.6;
       white-space: pre-line;
+      text-align: left;
+      border-left: 3px solid #e91e63;
+      padding-left: 15px;
     }
 
     .firma {
       margin-top: 30px;
       font-style: italic;
       color: #777;
+      display: none;
     }
 
     .corazon {
@@ -78,14 +75,8 @@
     }
 
     @keyframes flotar {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) rotate(720deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
     }
 
     .musica {
@@ -117,35 +108,47 @@
     Hola, mi niña preciosa 💕
   </div>
 
-  <!-- Mensaje principal -->
+  <!-- Contenido principal -->
   <div class="contenedor" id="contenido">
     <h1>Gracias por llegar a mi vida</h1>
-    <p>
-Gracias por todo, por ser tan perfecta ante mis ojos, porque eres la mejor persona que ha podido estar en mi vida.  
-Aún me quedan muchas cosas tuyas por conocer.  
-Pronto te pediré que seas mi novia, y cuando lo haga, será el mejor día de mi vida.  
-No me arrepiento de haberte conocido ni un solo segundo.  
-Aún recuerdo ese día en el que te vi por primera vez… nunca imaginé que serías parte de mi vida, pero agradezco a Dios por eso.
-
-Me gusta cada cosa de ti: tu sonrisa, tu carita, tus labios, tus manos, cómo sonríes, cómo a veces haces que mi día mejore con solo un mensaje.  
-Y por eso no te cambiaría por nadie.
-
-Gracias por aparecer justo cuando no lo esperaba.  
-Gracias por los momentos que hemos vivido juntos y por esas conversaciones que me terminan haciendo sonreír sin razón.  
-Solo quiero decirte que no estás sola, aquí me tienes y puedes confiar en mí, porque no te imaginas cuánto yo te quiero.  
-Cuando te vuelva a ver, te abrazaré fuerte y te llenaré de besos, mi niña preciosa.  
-Sé que eres insegura, pero te puedo asegurar que no tengo planes de hacerte daño.  
-Más bien, te amaré como nadie nunca te ha amado, porque te quiero con el corazón, y lo que siento es real.
-    </p>
-    <p class="firma">— Gael</p>
+    <p class="mensaje" id="mensaje"></p>
+    <p class="firma" id="firma">— Gael</p>
   </div>
 
-  <!-- Mostrar mensaje después de unos segundos -->
+  <!-- Mostrar mensaje después del saludo -->
   <script>
+    const texto = `Gracias por todo, por ser tan perfecta ante mis ojos, porque eres la mejor persona que ha podido estar en mi vida.
+Aún me quedan muchas cosas tuyas por conocer.
+Pronto te pediré que seas mi novia, y cuando lo haga, será el mejor día de mi vida.
+No me arrepiento de haberte conocido ni un solo segundo.
+Aún recuerdo ese día en el que te vi por primera vez… nunca imaginé que serías parte de mi vida, pero agradezco a Dios por eso.
+
+Me gusta cada cosa de ti: tu sonrisa, tu carita, tus labios, tus manos, cómo sonríes, cómo a veces haces que mi día mejore con solo un mensaje.
+Y por eso no te cambiaría por nadie.
+
+Gracias por aparecer justo cuando no lo esperaba.
+Gracias por los momentos que hemos vivido juntos y por esas conversaciones que me terminan haciendo sonreír sin razón.
+Solo quiero decirte que no estás sola, aquí me tienes y puedes confiar en mí, porque no te imaginas cuánto yo te quiero.
+Cuando te vuelva a ver, te abrazaré fuerte y te llenaré de besos, mi niña preciosa.
+Sé que eres insegura, pero te puedo asegurar que no tengo planes de hacerte daño.
+Más bien, te amaré como nadie nunca te ha amado, porque te quiero con el corazón, y lo que siento es real.`;
+
     setTimeout(() => {
       document.getElementById("saludo").style.display = "none";
       document.getElementById("contenido").style.display = "block";
+      escribirTexto();
     }, 4000);
+
+    let i = 0;
+    function escribirTexto() {
+      if (i < texto.length) {
+        document.getElementById("mensaje").innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(escribirTexto, 30); // velocidad de escritura
+      } else {
+        document.getElementById("firma").style.display = "block";
+      }
+    }
   </script>
 
   <!-- Música de fondo (YouTube embed) -->
